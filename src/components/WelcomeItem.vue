@@ -1,5 +1,5 @@
-<template>
-  <div class="item">
+<template >
+  <div class="item" >
     <i>
       <slot name="icon"></slot>
     </i>
@@ -13,7 +13,15 @@
 </template>
 
 <style scoped>
+.welcom{
+
+  margin:20px;
+  
+}
+
+
 .item {
+  margin: 20px;
   margin-top: 2rem;
   display: flex;
   position: relative;

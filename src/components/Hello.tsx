@@ -4,7 +4,7 @@ interface HelloMsg{
 
 const Hello=(props:HelloMsg)=>{
 
-    return(<h1>{props.msg}</h1> )
+    return(<h1>{props.msg}</h1>)
 
 }
 

@@ -7,19 +7,19 @@ import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
 </script>
 
-<template>
-  <WelcomeItem>
+<template >
+  <WelcomeItem class=Welcom>
     <template #icon>
       <DocumentationIcon />
     </template>
-    <template #heading>Documentation</template>
+    <template  #heading >Documentation</template>
 
     Vue’s
     <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
     provides you with all information you need to get started.
   </WelcomeItem>
 
-  <WelcomeItem>
+  <WelcomeItem class="Welcom">
     <template #icon>
       <ToolingIcon />
     </template>
@@ -86,3 +86,13 @@ import SupportIcon from './icons/IconSupport.vue'
     <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
   </WelcomeItem>
 </template>
+
+
+<style scoped>
+.Welcom{
+
+  margin:20px;
+  
+}
+
+</style>
