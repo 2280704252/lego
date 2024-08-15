@@ -4,7 +4,7 @@
             <div class="img-view">
                 <a-card>
                     <template #cover >   
-                            <img  alt="example" src="https://sns-webpic-qc.xhscdn.com/202408131534/de3652d4d3e75c9cf54ae9b879a9eb12/1000g0082qd9jne4ji00g5nm03dug8dg8o52ijjo!nd_dft_wlteh_webp_3" />
+                            <img  alt="example" :src="template.coverImg" />
                     </template>
                 </a-card>
             
@@ -14,14 +14,14 @@
         <a-col :span=12 style="margin-top:20px">
             
 
-            <a-row><h1>喜欢从来不是类型而是感觉</h1></a-row>
-            <a-row><h2>#把生活拍出电影感 #情绪写真 #氛围感 #广州约拍 #夜景人像</h2></a-row>
-            <a-row><h3>作者：kk</h3></a-row>
+            <a-row><h1>{{template.title}}</h1></a-row>
+            <br/>
+            <a-row><h3>作者：{{template.author}}</h3></a-row>
 
 
             <a-row>
                 <div style="margin:20px">
-                    <a-qrcode :value="text"/>
+                    <a-qrcode :value="template.coverImg"/>
                 </div>
             
             </a-row>
@@ -41,16 +41,49 @@
 </template>
 
 
-<script setup>
+<script lang='ts'>
 
 import {useRoute} from 'vue-router' 
 
-import {ref} from 'vue'
+import {computed, defineComponent, ref} from 'vue'
 
-const text=ref('https://sns-webpic-qc.xhscdn.com/202408131534/de3652d4d3e75c9cf54ae9b879a9eb12/1000g0082qd9jne4ji00g5nm03dug8dg8o52ijjo!nd_dft_wlteh_webp_3')
+import {useStore} from 'vuex'
+
+import {GlobalDataProps} from '../sotre/index'
 
 
-const route=useRoute()
+export default defineComponent({
+
+
+    setup(){
+        const route=useRoute()
+        const store=useStore<GlobalDataProps>()
+        const currentId =route.params.postId as string
+
+        const template = computed(()=> store.getters.getTemplateById(parseInt(currentId)))
+
+
+        return{
+
+            template
+        }
+
+
+    }
+    
+
+
+})
+
+
+
+
+
+
+
+
+
+
 
 
 </script>

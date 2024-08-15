@@ -4,9 +4,12 @@ import HomeView from '../views/HomeView.vue'
 import GridView from '../views/GridView.vue'
 
 import DetailView from '../views/DetailView.vue'
+
 import Editor from '../views/Editor.vue'
 
 import MainViewVue from '@/views/MainView.vue'
+
+import indexVue from '@/views/index.vue'
 
 
 const router = createRouter({
@@ -17,7 +20,7 @@ const router = createRouter({
       name: 'index',
       component:MainViewVue,
       children:[
-        {path:'/',name:'home',component:GridView},
+        {path:'/',name:'home',component:indexVue},
         {path: '/about',name: 'about',component: () => import('../views/AboutView.vue')},
         {path:'/template/:postId',name:'template',component: DetailView}
       ]

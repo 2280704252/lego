@@ -1,6 +1,6 @@
 <template>
 
-    <pre>{{route}}</pre>     
+         
     
     <a-layout>
         <a-layout-header :style="headerStyle" class="header">Lego</a-layout-header>

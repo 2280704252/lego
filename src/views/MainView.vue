@@ -5,9 +5,6 @@
         <div class="page-title">
           <router-link to="/"><h1>LEGO</h1></router-link>
         </div>
-        <!-- <div class="page-title">
-          <router-link to="/about">关于</router-link>
-        </div> -->
 
         <div class="page-title">
           <a-button type="primary" style="margin-right:20px">登录</a-button>
@@ -19,7 +16,12 @@
 
       <a-layout-content class="home-layout">
 
+        
+
         <router-view></router-view>
+
+
+
         
       </a-layout-content>
 
@@ -35,6 +37,8 @@
 <script lang="ts" setup>
 
 import type { CSSProperties } from 'vue';
+
+import index from './index.vue'
 const headerStyle: CSSProperties = {
   textAlign: 'center',
   color: '#fff',
