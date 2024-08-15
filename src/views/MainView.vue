@@ -3,16 +3,24 @@
     <a-layout :style="{background: ''}">
       <a-layout-header class="header" >
         <div class="page-title">
-          <router-link to="/">首页</router-link>
+          <router-link to="/"><h1>LEGO</h1></router-link>
         </div>
-        <div class="page-title">
+        <!-- <div class="page-title">
           <router-link to="/about">关于</router-link>
+        </div> -->
+
+        <div class="page-title">
+          <a-button type="primary" style="margin-right:20px">登录</a-button>
+          
+          <a-button type="primary">编辑</a-button>
         </div>
       </a-layout-header>
 
 
       <a-layout-content class="home-layout">
+
         <router-view></router-view>
+        
       </a-layout-content>
 
 
@@ -67,6 +75,7 @@ const footerStyle: CSSProperties = {
 
 .page-title {
   color: #fff;
+  
 }
 
 .footer{

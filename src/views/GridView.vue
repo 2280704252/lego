@@ -1,74 +1,66 @@
 <template>
+  <a-row :gutter= "[16,24]" class="row-position">
+    <a-col :span="8" class="poster-item"><div >
 
-<a-row :gutter= "[16,24]" class="row-position">
-    <a-col :span="8" class="poster-item"><div class ="grid-box">
-
-
-       
-
-        <a-card  hoverable  class="card-style" style="height:500px">
+        <router-link to='/template/1'>
+​        <a-card hoverable style="width: 240px">
             <template #cover>
-                <img src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp" alt="example">
-
-            </template>
-
-            <a-card-meta title="HHH">
-
-                <template #description>abcdefg</template>
-            </a-card-meta>
-
-        </a-card>
-
-
-     </div></a-col>
-
-    <a-col :span="8"><div class ="grid-box">
-
-        <a-card hoverable class="card-style" style="height:500px" }>
-
-            <template #cover>
-                <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" @click="useTemplate"/>
-                <div class=".hover-item" >
-                    <a-button  type="primary" >使用该模版</a-button>
+                <img alt="example" src="https://sns-webpic-qc.xhscdn.com/202408131534/de3652d4d3e75c9cf54ae9b879a9eb12/1000g0082qd9jne4ji00g5nm03dug8dg8o52ijjo!nd_dft_wlteh_webp_3" />
+                <div class="hover-item">
+                    <a-button size="large" type="primary">使用该模版创建</a-button>
                 </div>
             </template>
-
-
             <a-card-meta title="Europe Street beat">
-                <template #description>www.instagram.com</template>
+            <template #description>www.instagram.com</template>
             </a-card-meta>
-
-
-
         </a-card>
+        </router-link>
 
-        
-        
-        
-        
-        </div></a-col>
-    <a-col :span="8"><div class ="grid-box">
-        
-        
 
-        <a-card hoverable class="card-style" style="height:500px">
+​     </div></a-col>
+
+​    <a-col :span="8"><div >
+
+    <router-link to="template/2">
+
+​       <a-card hoverable style="width: 240px">
             <template #cover>
-                <img alt="example" src="https://gw.alipayobjects.com/zos/antfincdn/x43I27A55%26/photo-1438109491414-7198515b166b.webp"/>
+                <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+                <div class="hover-item">
+                    <a-button size="large" type="primary">使用该模版创建</a-button>
+                </div>
             </template>
-
-            <a-card-meta title="xxx">
-                <template #description>xxxxxxxx</template>
+            <a-card-meta title="Europe Street beat">
+            <template #description>www.instagram.com</template>
             </a-card-meta>
-
-
-
-
         </a-card>
-       
-        
-        
-        </div></a-col>
-    
+    </router-link>
+
+​        
+​        
+​        
+​        </div></a-col>
+​    <a-col :span="8"><div >
+​        
+​        <a-card hoverable style="width: 240px">
+            <template #cover>
+                <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+                <div class="hover-item">
+                    <a-button size="large" type="primary">使用该模版创建</a-button>
+                </div>
+            
+            </template>
+            <a-card-meta title="Europe Street beat">
+            <template #description>www.instagram.com</template>
+            </a-card-meta>
+        </a-card>
+
+​       
+​       
+​       
+​        
+​    </div></a-col>
+​    
 </a-row>
 
 
@@ -78,6 +70,8 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
+
+import {useRouter} from 'vue-router'
 const visible = ref(false);
 
 
@@ -89,6 +83,17 @@ const useTemplate=()=>{
     hoverBoolean.value=!hoverBoolean.value
     console.log(hoverBoolean.value)
 }
+
+const router=useRouter()
+
+
+
+
+    router.push({name:'template',params:{ postId: 1}})
+    
+
+
+
 
 </script>
 
@@ -125,11 +130,13 @@ const useTemplate=()=>{
 
 .hover-item{
 
-  position: absolute;
+  position:absolute;
+  margin-left: 20%;
+  margin-top: 60%;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 0%;
+  height: 0%;
   display: none;
   background: rgba(0, 0, 0, .8);
   align-items: center;
