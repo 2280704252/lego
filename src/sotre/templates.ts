@@ -1,11 +1,6 @@
-import {createStore} from 'vuex'
+import { createStore, Module } from "vuex"
 
-
-export interface UserProps{
-    isLogin:boolean,
-    userName?:string
-}
-
+import {GlobalDataProps} from './index'
 
 export interface TemplateProps{
 
@@ -15,14 +10,6 @@ export interface TemplateProps{
     author:string,
     copiedCount:number
 }
-
-export interface GlobalDataProps{
-    user:UserProps;
-    templates:TemplateProps[]
-
-
-}
-
 
 const testData:TemplateProps[]=[
 
@@ -40,41 +27,21 @@ const testData:TemplateProps[]=[
 
 ]
 
-const store=createStore<GlobalDataProps>({
+export interface TemplatesProps{
 
+    data:TemplateProps[]
+}
+
+const templates:Module<TemplatesProps,GlobalDataProps>= {
     state:{
-        templates:testData,
-        user:{isLogin:false}
+
+        data:testData
     },
-
-    mutations:{
-
-
-        login(state){
-
-            state.user={...state.user,isLogin:true,userName:'BABY'}
-        },
-
-        logout(state){
-
-            state.user={...state.user,isLogin:false}
-
-        }
-    },
-
-
     getters:{
 
-
         getTemplateById:(state)=>(id:number)=>{
-
-            return state.templates.find(t=>t.id===id)
-
+            return state.data.find(t=>t.id===id)
 
         }
     }
-})
-
-
-
-export default store
+}

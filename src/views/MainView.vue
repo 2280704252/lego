@@ -7,9 +7,9 @@
         </div>
 
         <div class="page-title">
-          <a-button type="primary" style="margin-right:20px">登录</a-button>
-          
-          <a-button type="primary">编辑</a-button>
+          <!-- <a-button type="primary" style="margin-right:20px">登录</a-button> -->
+          <user-profile :user="user"/>
+          <!-- <a-button type="primary">编辑</a-button> -->
         </div>
       </a-layout-header>
 
@@ -34,37 +34,32 @@
     </a-layout-footer>
   </div>
 </template>
-<script lang="ts" setup>
+<script lang='ts'>
+import { computed, defineComponent } from 'vue'
+import UserProfileVue from '../components/UserProfile.vue'
 
-import type { CSSProperties } from 'vue';
+import UserProfile from '../components/UserProfile.vue'
 
-import index from './index.vue'
-const headerStyle: CSSProperties = {
-  textAlign: 'center',
-  color: '#fff',
-  height: 64,
-  paddingInline: 50,
-  lineHeight: '64px',
-  backgroundColor: '#7dbcea',
-  
+import {useStore} from 'vuex'
+import {GlobalDataProps} from '../sotre/index'
 
-};
+export default defineComponent({
+  components:{
+    UserProfile
+  },
+  setup() {
 
-const contentStyle: CSSProperties = {
-  textAlign: 'center',
-  minHeight: 120,
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#108ee9',
-};
+    const store =useStore<GlobalDataProps>()
+    const user=computed(()=>store.state.user)
 
-
-const footerStyle: CSSProperties = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#7dbcea',
-};
+    return{
+      user
+    }
+    
+  },
+})
 </script>
+
 
 
 <style>
