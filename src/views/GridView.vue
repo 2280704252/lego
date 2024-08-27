@@ -41,7 +41,6 @@ import {useRouter} from 'vue-router'
 export default defineComponent({
     name:'template-list',
     props:{
-
         list:{
             type:Array as PropType<TemplateProps[]>,
             require:true

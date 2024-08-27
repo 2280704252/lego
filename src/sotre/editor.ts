@@ -32,11 +32,11 @@ export const testComponents:ComponentData[]=[
 
 
     {id: uuidv4(),name:'l-text',props:{text: 'hello1',fontSize:'60px'}},
-    {id: uuidv4(),name:'l-text',props:{text: 'hello2',fontSize:'50px'}},
+    {id: uuidv4(),name:'l-text',props:{text: 'hello2',fontSize:'50px',color:'red'}},
     {id: uuidv4(),name:'l-text',props:{text: 'hello3',fontSize:'40px'}},
     {id: uuidv4(),name:'l-text',props:{text: 'hello4',fontSize:'30px'}},
-    {id: uuidv4(),name:'l-text',props:{text: 'hello5',fontSize:'20px'}},
-    {id: uuidv4(),name:'l-text',props:{text: 'hello6',fontSize:'10px'}},
+    {id: uuidv4(),name:'l-text',props:{text: 'hello5',fontSize:'10px'}},
+    {id: uuidv4(),name:'l-text',props:{text: 'hello6'}},
 ]
 
 

@@ -18,8 +18,6 @@ import { computed } from 'vue'
 import {useStore} from 'vuex'
 
 import {GlobalDataProps} from '../sotre/index'
-
-
 import TemplateList from './GridView.vue'
 
 
@@ -36,9 +34,6 @@ export default defineComponent({
 
         return{
             testData
-
-
-        
         }
         
     }
