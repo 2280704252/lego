@@ -34,7 +34,7 @@
 <script lang="ts" >
 import { defineComponent, onMounted, PropType, ref } from 'vue';
 
-import {TemplateProps} from '../sotre/index'
+import {TemplateProps} from '../sotre/templates'
 
 import {useRouter} from 'vue-router'
 
@@ -47,7 +47,6 @@ export default defineComponent({
             require:true
         }
     }
-
 })
     const visible = ref(false);
     const hoverBoolean=ref(false)

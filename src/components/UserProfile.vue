@@ -12,7 +12,6 @@
             <template #overlay>
 
                 <a-menu>
-
                     <a-menu-item key="0" @click="logout">退出</a-menu-item>
                 </a-menu>
             </template>

@@ -1,6 +1,7 @@
-import { createStore, Module } from "vuex"
+import type{ Module } from "vuex"
 
-import {GlobalDataProps} from './index'
+
+import type{GlobalDataProps} from './index'
 
 export interface TemplateProps{
 
@@ -10,6 +11,7 @@ export interface TemplateProps{
     author:string,
     copiedCount:number
 }
+
 
 const testData:TemplateProps[]=[
 
@@ -27,21 +29,32 @@ const testData:TemplateProps[]=[
 
 ]
 
+
 export interface TemplatesProps{
 
     data:TemplateProps[]
 }
 
-const templates:Module<TemplatesProps,GlobalDataProps>= {
-    state:{
+const templates:Module<TemplatesProps,GlobalDataProps>={
 
+
+    state:{
         data:testData
+
     },
+
+
     getters:{
 
+
         getTemplateById:(state)=>(id:number)=>{
+
             return state.data.find(t=>t.id===id)
+
 
         }
     }
+
 }
+
+export default templates
