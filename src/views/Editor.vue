@@ -34,7 +34,19 @@
 
                 <div class="body-container">
 
-                    <component  v-for="component in content" :key="component.id"  :is="component.name" v-bind="component.props"  @click="deleteItem(component.id)" />
+                    <editor-wrapper @setActive="setActive"
+                                    v-for="component in content" 
+                                    :key="component.id" 
+                                    :id="component.id" 
+                                    :active="component.id===(currentElement && currentElement.id)"
+                                    >
+                        <component  
+                                    :key="component.id"
+                                    :is="component.name" 
+                                    v-bind="component.props"  
+                                    />
+                    </editor-wrapper>
+
                     
                 </div>
 
@@ -49,7 +61,7 @@
                     <a-tab-pane key="1" tab="属性设置">
                         <a-collapse v-model:activeKey="collapseKey" :bordered="false">
                             <a-collapse-panel key="1" header="基本属性">
-                                <div>文本:
+                                <!-- <div>文本:
                                       <a-textarea v-model:value="textValue" placeholder="Basic usage" :rows="4" style="width:85%"/>
                                 </div>
                                 <br/>
@@ -63,17 +75,17 @@
                                         @change="handleFont"
                                     ></a-select>
                                 </div>
-                                <br/>
+                                <br/> -->
 
-                                <div>
+                                <!-- <div>
                                     <a-radio-group v-model:value="typeFace" button-style="solid" >
                                         <a-radio-button value="a" >常规</a-radio-button>
                                         <a-radio-button value="b">粗体</a-radio-button>
                                         <a-radio-button value="c">斜体</a-radio-button>
                                     </a-radio-group>
                                 </div>
-                                <br/>
-                                <div>行高：
+                                <br/> -->
+                                <!-- <div>行高：
 
                                     <a-slider id="test" v-model:value="sliderValue" style="width:100%"/>
                                 </div>
@@ -95,7 +107,9 @@
 
                                     <color-picker v-model:pureColor="backgroundColor"/>
 
-                                </div>
+                                </div> -->
+
+                            <pre>{{currentElement && currentElement.props}}</pre>
 
 
 
@@ -149,6 +163,10 @@ import ComponentsList from '../components/ComponentsList.vue'
 
 import {defaultTextTemplate}from '../defaultTemplates'
 
+import EditorWrapper from '../components/EditorWrapper.vue';
+
+import {ComponentData} from '../sotre/editor'
+
 
 export default defineComponent({
 
@@ -158,7 +176,8 @@ export default defineComponent({
 
 
       LText,
-      ComponentsList
+      ComponentsList,
+      EditorWrapper
     },
     setup(){
 
@@ -247,6 +266,15 @@ export default defineComponent({
         }
 
 
+        const setActive = (id:string)=>{
+
+            //提交到store实例
+            store.commit('setActive',id)
+        }
+
+        const currentElement =computed<ComponentData|null>(()=>store.getters.getCurrentElement)
+
+
         return{
 
             activeKey,
@@ -265,12 +293,14 @@ export default defineComponent({
             pureColor,
 
             defaultTextTemplate,
+            currentElement,
 
 
             handleFont,
             handleTextColor,
             addItem,
             deleteItem,
+            setActive
 
         }
     }

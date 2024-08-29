@@ -8,7 +8,7 @@ import store from './index'
 
 
 
-interface ComponentData{
+export interface ComponentData{
 
     props: {[key:string]:any}
 
@@ -78,13 +78,25 @@ const editor:Module<EditorProps,GlobalDataProps>={
                 state.components=state.components.filter(component =>component.id !== props)
             }
 
+        },
+
+        setActive(state,props:string){
+
+
+            state.currentElement=props
+
+
+
         }
 
     },
     getters:{
 
+        getCurrentElement:(state)=>{
 
+            return state.components.find(component=>component.id===state.currentElement)
 
+        }
 
     }
 }
