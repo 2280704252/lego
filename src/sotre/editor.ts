@@ -4,6 +4,7 @@ import  type{ Module } from 'vuex'
 import type{GlobalDataProps}from './index'
 
 import {v4 as uuidv4} from 'uuid'
+import store from './index'
 
 
 
@@ -32,7 +33,7 @@ export const testComponents:ComponentData[]=[
 
 
     {id: uuidv4(),name:'l-text',props:{text: 'hello1',fontSize:'60px'}},
-    {id: uuidv4(),name:'l-text',props:{text: 'hello2',fontSize:'50px',color:'red'}},
+    {id: uuidv4(),name:'l-text',props:{text: 'hello2',fontSize:'50px',color:'red',actionType:'url',url:'https://www.baidu.com'}},
     {id: uuidv4(),name:'l-text',props:{text: 'hello3',fontSize:'40px'}},
     {id: uuidv4(),name:'l-text',props:{text: 'hello4',fontSize:'30px'}},
     {id: uuidv4(),name:'l-text',props:{text: 'hello5',fontSize:'10px'}},
@@ -45,6 +46,46 @@ const editor:Module<EditorProps,GlobalDataProps>={
         components:testComponents,
 
         currentElement:''
+    },
+    mutations:{
+
+        addComponent(state,props){
+
+            const newComponent:ComponentData={
+
+
+                id:uuidv4(),
+                name:'l-text',
+                props:props
+
+            }
+
+           state.components.push(newComponent)
+
+          
+
+    
+        },
+
+        deleteComponent(state,props){
+
+
+            const currentComponent=state.components.find((component)=>component.id===props)
+            if(currentComponent){
+
+               // const currentIndex=state.components.findIndex((component)=>component.id===props)
+
+                state.components=state.components.filter(component =>component.id !== props)
+            }
+
+        }
+
+    },
+    getters:{
+
+
+
+
     }
 }
 

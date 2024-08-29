@@ -1,5 +1,5 @@
 <template>
-    <component :is="tag" :style="styleProps" class="l-text-component">{{text}}</component>
+    <component :is="tag" :style="styleProps" class="l-text-component" @click="handleClick">{{text}}</component>
 </template>
 
 <script lang="ts">
@@ -10,6 +10,8 @@ import {pick} from 'lodash-es'
 import {textDefaultProps,transformToComponentProps} from '../defaultProps'
 
 import {textStylePropNames} from '../defaultProps'
+
+import useComponentCommon from '../hooks/useComponentCommon'
 
 const defaultProps=transformToComponentProps(textDefaultProps)
 
@@ -28,7 +30,7 @@ export default defineComponent({
     },
     setup(props) {
 
-        const styleProps=computed(()=>pick(props,textStylePropNames))
+        const {styleProps,handleClick}=useComponentCommon(props,textStylePropNames)
 
         onMounted(()=>{
 
@@ -37,7 +39,8 @@ export default defineComponent({
         })
         return{
 
-            styleProps
+            styleProps,
+            handleClick
         }
         
     },

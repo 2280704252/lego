@@ -11,6 +11,7 @@ import Vue3ColorPicker from "vue3-colorpicker";
 import "vue3-colorpicker/style.css";
 
 import '@cyhnkckali/vue3-color-picker/dist/style.css'
+
 import store from './sotre/index';
 
 
@@ -22,6 +23,7 @@ app.use(Antd)
 
 app.use(router)
 
+//将store实例注入到所有子组件汇总，通过this.$store访问到
 app.use(Vue3ColorPicker).use(store)
 
 app.mount('#app')

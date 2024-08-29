@@ -8,31 +8,11 @@
             <a-layout-sider :style="siderStyle" class="sider" width="320px">
                 <a-tabs v-model:activeKey="activeKey" centered >
                     <a-tab-pane key="1" tab="文本" >
-                        
-                        <div>
-                            <a-button type="text" class="large-title" size="large" >大标题</a-button>
-                        </div>
-                        
-                        <div>
-                            <a-button type="text">楷体副标题</a-button>
-                        </div>
-                        <div>
-                            <a-button type="text">正文内容</a-button>
-                        </div>
 
-                        <div>
-                            <a-button type="text">宋体正文内容</a-button>
-                        </div>
-                        <div>
-                            <a-button type="text">链接内容</a-button>
-                        </div>
 
-                        <div>
-                            <a-button type="text">按钮内容</a-button>
-                        </div>
-                        
-                        
-                        
+<!-- onItemClick组件的事件名称 -->
+                        <components-list :list="defaultTextTemplate" @onItemClick="addItem" />
+
                         </a-tab-pane>
                     <a-tab-pane key="2" tab="图片" force-render>Content of Tab Pane 2</a-tab-pane>
                     <a-tab-pane key="3" tab="形状">Content of Tab Pane 3</a-tab-pane>
@@ -48,11 +28,13 @@
                     {{component.name}}
                 </div> -->
 
+                
+
 
 
                 <div class="body-container">
 
-                    <component  v-for="component in content" :key="component.id"  :is="component.name" v-bind="component.props"/>
+                    <component  v-for="component in content" :key="component.id"  :is="component.name" v-bind="component.props"  @click="deleteItem(component.id)" />
                     
                 </div>
 
@@ -163,6 +145,10 @@ import {GlobalDataProps} from '../sotre/index'
 
 import LText from '../components/LText.vue';
 
+import ComponentsList from '../components/ComponentsList.vue'
+
+import {defaultTextTemplate}from '../defaultTemplates'
+
 
 export default defineComponent({
 
@@ -171,7 +157,8 @@ export default defineComponent({
     components:{
 
 
-      LText
+      LText,
+      ComponentsList
     },
     setup(){
 
@@ -244,6 +231,21 @@ export default defineComponent({
 
         const content=computed(()=>store.state.editor.components)
 
+        const addItem=(props:any)=>{
+
+            store.commit('addComponent',props)
+
+        }
+
+        const deleteItem =(index:any)=>{
+
+
+            console.log(index)
+
+            store.commit('deleteComponent',index)
+
+        }
+
 
         return{
 
@@ -262,26 +264,17 @@ export default defineComponent({
             textColor,
             pureColor,
 
+            defaultTextTemplate,
+
 
             handleFont,
-            handleTextColor
-
-
-
-            
-
-
-
+            handleTextColor,
+            addItem,
+            deleteItem,
 
         }
     }
 })
-
-
-
-
-
-
 
 
 
