@@ -5,6 +5,7 @@ import type{GlobalDataProps}from './index'
 
 import {v4 as uuidv4} from 'uuid'
 import store from './index'
+import  type{ TextComponentProps } from '@/defaultProps'
 
 
 
@@ -32,9 +33,9 @@ export interface EditorProps{
 export const testComponents:ComponentData[]=[
 
 
-    {id: uuidv4(),name:'l-text',props:{text: 'hello1',fontSize:'60px'}},
-    {id: uuidv4(),name:'l-text',props:{text: 'hello2',fontSize:'50px',color:'red',actionType:'url',url:'https://www.baidu.com'}},
-    {id: uuidv4(),name:'l-text',props:{text: 'hello3',fontSize:'40px'}},
+    {id: uuidv4(),name:'l-text',props:{text: 'hello1',fontSize:'60px',lineHeight:'2',textAlign: 'left',fontFamily:''}},
+    {id: uuidv4(),name:'l-text',props:{text: 'hello2',fontSize:'50px',color:'red',actionType:'url',url:'',textAlign:'right',fontFaily:''}},
+    {id: uuidv4(),name:'l-text',props:{text: 'hello3',fontSize:'40px',textAlign:'center'}},
     {id: uuidv4(),name:'l-text',props:{text: 'hello4',fontSize:'30px'}},
     {id: uuidv4(),name:'l-text',props:{text: 'hello5',fontSize:'10px'}},
     {id: uuidv4(),name:'l-text',props:{text: 'hello6'}},
@@ -84,6 +85,19 @@ const editor:Module<EditorProps,GlobalDataProps>={
 
 
             state.currentElement=props
+
+
+
+        },
+        updateComponent(state,{key,value}){
+
+            const updateComponent =state.components.find((component)=>component.id===state.currentElement)
+
+            if(updateComponent){
+
+                updateComponent.props[key as keyof TextComponentProps]=value
+            }
+
 
 
 

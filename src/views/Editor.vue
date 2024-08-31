@@ -109,8 +109,14 @@
 
                                 </div> -->
 
-                            <pre>{{currentElement && currentElement.props}}</pre>
+                            
 
+                            <props-tbale v-if="currentElement && currentElement.props" 
+                            
+                            :props="currentElement.props"                            
+                            @change="handleChange"></props-tbale>
+                            
+                            <pre>{{currentElement && currentElement.props}}</pre>
 
 
                             </a-collapse-panel>
@@ -168,6 +174,9 @@ import EditorWrapper from '../components/EditorWrapper.vue';
 import {ComponentData} from '../sotre/editor'
 
 
+import PropsTbale from '../components/PropsTable.vue'
+
+
 export default defineComponent({
 
 
@@ -177,7 +186,8 @@ export default defineComponent({
 
       LText,
       ComponentsList,
-      EditorWrapper
+      EditorWrapper,
+      PropsTbale
     },
     setup(){
 
@@ -272,6 +282,14 @@ export default defineComponent({
             store.commit('setActive',id)
         }
 
+
+        const handleChange=(e:any)=>{
+            console.log('event',e)
+            store.commit('updateComponent',e)
+
+
+        }
+
         const currentElement =computed<ComponentData|null>(()=>store.getters.getCurrentElement)
 
 
@@ -300,7 +318,8 @@ export default defineComponent({
             handleTextColor,
             addItem,
             deleteItem,
-            setActive
+            setActive,
+            handleChange
 
         }
     }
